@@ -1,0 +1,247 @@
+nrows = 200
+ncols = 200
+total_pixels = 40000
+igrid_count = 11
+pgrid_count = 6
+wgrid_count = 5
+check_pixel_count = 23
+BYTES_PER_WORD = 1
+BYTES_PER_PIXEL = 1
+bytes_p_grid = 40000
+bytes_p_grid_rounded2wordboundary = 40000
+words in a grid = 40000
+igrid_size = 40000 words
+pgrid_size = 40000 words
+wgrid_size = 40000 words
+mem_check_size = 1 words
+bytes2allocate = 880023
+
+
+Memory starts at 32878528 and ends at 33758551
+32878528 mem_check_array[ 0]
+32878529 igrid_array[ 0]
+32918529 mem_check_array[ 1]
+32918530 igrid_array[ 1]
+32958530 mem_check_array[ 2]
+32958531 igrid_array[ 2]
+32998531 mem_check_array[ 3]
+32998532 igrid_array[ 3]
+33038532 mem_check_array[ 4]
+33038533 igrid_array[ 4]
+33078533 mem_check_array[ 5]
+33078534 igrid_array[ 5]
+33118534 mem_check_array[ 6]
+33118535 igrid_array[ 6]
+33158535 mem_check_array[ 7]
+33158536 igrid_array[ 7]
+33198536 mem_check_array[ 8]
+33198537 igrid_array[ 8]
+33238537 mem_check_array[ 9]
+33238538 igrid_array[ 9]
+33278538 mem_check_array[10]
+33278539 igrid_array[10]
+33318539 mem_check_array[11]
+33318540 pgrid_array[ 0]
+33358540 mem_check_array[12]
+33358541 pgrid_array[ 1]
+33398541 mem_check_array[13]
+33398542 pgrid_array[ 2]
+33438542 mem_check_array[14]
+33438543 pgrid_array[ 3]
+33478543 mem_check_array[15]
+33478544 pgrid_array[ 4]
+33518544 mem_check_array[16]
+33518545 pgrid_array[ 5]
+33558545 mem_check_array[17]
+33558546 wgrid_array[ 0]
+33598546 mem_check_array[18]
+33598547 wgrid_array[ 1]
+33638547 mem_check_array[19]
+33638548 wgrid_array[ 2]
+33678548 mem_check_array[20]
+33678549 wgrid_array[ 3]
+33718549 mem_check_array[21]
+33718550 wgrid_array[ 4]
+33758550 mem_check_array[22]
+33758551 End of memory 
+32866320 s color_table_landuse_ptr     size= 3156 bytes count=   1 color_obj.c 428
+32869476 e color_table_landuse_ptr     END OF color_obj.c 428
+34006880 s color_table_probability_ptr size= 3156 bytes count=   1 color_obj.c 429
+34010036 e color_table_probability_ptr END OF color_obj.c 429
+34010048 s color_table_growth_ptr      size= 3156 bytes count=   1 color_obj.c 430
+34013204 e color_table_growth_ptr      END OF color_obj.c 430
+34013216 s color_table_deltatron_ptr   size= 3156 bytes count=   1 color_obj.c 431
+34016372 e color_table_deltatron_ptr   END OF color_obj.c 431
+34016384 s color_table_grayscale_ptr   size= 3156 bytes count=   1 color_obj.c 432
+34019540 e color_table_grayscale_ptr   END OF color_obj.c 432
+6653600 s &saved_coefficient          size=   40 bytes count=   1 coeff_obj.c 1151
+6653640 e &saved_coefficient          END OF coeff_obj.c 1151
+6653536 s &current_coefficient        size=   40 bytes count=   1 coeff_obj.c 1152
+6653576 e &current_coefficient        END OF coeff_obj.c 1152
+6653504 s &step_coeff                 size=   40 bytes count=   1 coeff_obj.c 1153
+6653524 e &step_coeff                 END OF coeff_obj.c 1153
+6653472 s &start_coeff                size=   40 bytes count=   1 coeff_obj.c 1154
+6653492 e &start_coeff                END OF coeff_obj.c 1154
+6653440 s &stop_coeff                 size=   40 bytes count=   1 coeff_obj.c 1155
+6653460 e &stop_coeff                 END OF coeff_obj.c 1155
+6653408 s &best_fit_coeff             size=   40 bytes count=   1 coeff_obj.c 1156
+6653428 e &best_fit_coeff             END OF coeff_obj.c 1156
+6653248 s &coeff_filename[0]          size=    1 bytes count= 150 coeff_obj.c 1157
+6644800 s &array[0]                   size=  160 bytes count=  20 timer_obj.c 68
+6648000 e &array[0]                   END OF timer_obj.c 68
+6644768 s &actual_num_timers          size=    4 bytes count=   1 timer_obj.c 69
+6644772 e &actual_num_timers          END OF timer_obj.c 69
+6718496 s &igrid                      size=43296 bytes count=   1 igrid_obj.c 137
+6761792 e &igrid                      END OF igrid_obj.c 137
+6718492 s &igrid_count                size=    4 bytes count=   1 igrid_obj.c 138
+6718496 e &igrid_count                END OF igrid_obj.c 138
+6718432 s &road_pixel_count[0]        size=    4 bytes count=  15 igrid_obj.c 139
+6718492 e &road_pixel_count[0]        END OF igrid_obj.c 139
+6718424 s &excld_count                size=    4 bytes count=   1 igrid_obj.c 140
+6718428 e &excld_count                END OF igrid_obj.c 140
+6718304 s &percent_road[0]            size=    8 bytes count=  15 igrid_obj.c 141
+6718424 e &percent_road[0]            END OF igrid_obj.c 141
+6718280 s &total_pixels               size=    4 bytes count=   1 igrid_obj.c 142
+6718284 e &total_pixels               END OF igrid_obj.c 142
+6768032 s &z                          size= 1232 bytes count=   1 pgrid_obj.c 53
+6769264 e &z                          END OF pgrid_obj.c 53
+6766784 s &deltatron                  size= 1232 bytes count=   1 pgrid_obj.c 54
+6768016 e &deltatron                  END OF pgrid_obj.c 54
+6765536 s &delta                      size= 1232 bytes count=   1 pgrid_obj.c 55
+6766768 e &delta                      END OF pgrid_obj.c 55
+6764288 s &land1                      size= 1232 bytes count=   1 pgrid_obj.c 56
+6765520 e &land1                      END OF pgrid_obj.c 56
+6763040 s &land2                      size= 1232 bytes count=   1 pgrid_obj.c 57
+6764272 e &land2                      END OF pgrid_obj.c 57
+6761792 s &cumulate                   size= 1232 bytes count=   1 pgrid_obj.c 58
+6763024 e &cumulate                   END OF pgrid_obj.c 58
+6586432 s &cir_q[0]                   size=    8 bytes count=6000 stats_obj.c 3095
+6634432 e &cir_q[0]                   END OF stats_obj.c 3095
+6643552 s &stats_actual[0]            size=   80 bytes count=  15 stats_obj.c 3096
+6644752 e &stats_actual[0]            END OF stats_obj.c 3096
+6643456 s &regression                 size=   80 bytes count=   1 stats_obj.c 3097
+6643536 e &regression                 END OF stats_obj.c 3097
+6640576 s &average[0]                 size=  192 bytes count=  15 stats_obj.c 3098
+6643456 e &average[0]                 END OF stats_obj.c 3098
+6637696 s &std_dev[0]                 size=  192 bytes count=  15 stats_obj.c 3099
+6640576 e &std_dev[0]                 END OF stats_obj.c 3099
+6634816 s &running_total[0]           size=  192 bytes count=  15 stats_obj.c 3100
+6637696 e &running_total[0]           END OF stats_obj.c 3100
+6634464 s &urbanization_attempt       size=   40 bytes count=   1 stats_obj.c 3101
+6634504 e &urbanization_attempt       END OF stats_obj.c 3101
+6840980 s &nrows                      size=    4 bytes count=   1 memory_obj.c 166
+6840984 e &nrows                      END OF memory_obj.c 166
+6840976 s &ncols                      size=    4 bytes count=   1 memory_obj.c 167
+6840980 e &ncols                      END OF memory_obj.c 167
+6840972 s &total_pixels               size=    4 bytes count=   1 memory_obj.c 168
+6840976 e &total_pixels               END OF memory_obj.c 168
+6840968 s &invalid_val                size=    1 bytes count=   1 memory_obj.c 169
+6840969 e &invalid_val                END OF memory_obj.c 169
+6840768 s &igrid_free[0]              size=    4 bytes count=  50 memory_obj.c 171
+6840968 e &igrid_free[0]              END OF memory_obj.c 171
+6840736 s &igrid_free_tos             size=    4 bytes count=   1 memory_obj.c 172
+6840740 e &igrid_free_tos             END OF memory_obj.c 172
+6817536 s &igrid_array[0]             size=  464 bytes count=  50 memory_obj.c 173
+6840736 e &igrid_array[0]             END OF memory_obj.c 173
+6817312 s &pgrid_free[0]              size=    4 bytes count=  50 memory_obj.c 175
+6817512 e &pgrid_free[0]              END OF memory_obj.c 175
+6817280 s &pgrid_free_tos             size=    4 bytes count=   1 memory_obj.c 176
+6817284 e &pgrid_free_tos             END OF memory_obj.c 176
+6794080 s &pgrid_array[0]             size=  464 bytes count=  50 memory_obj.c 177
+6817280 e &pgrid_array[0]             END OF memory_obj.c 177
+6793856 s &wgrid_free[0]              size=    4 bytes count=  50 memory_obj.c 179
+6794056 e &wgrid_free[0]              END OF memory_obj.c 179
+6793828 s &wgrid_free_tos             size=    4 bytes count=   1 memory_obj.c 180
+6793832 e &wgrid_free_tos             END OF memory_obj.c 180
+6793824 s &min_wgrid_free_tos         size=    4 bytes count=   1 memory_obj.c 181
+6793828 e &min_wgrid_free_tos         END OF memory_obj.c 181
+6770624 s &wgrid_array[0]             size=  464 bytes count=  50 memory_obj.c 182
+6793824 e &wgrid_array[0]             END OF memory_obj.c 182
+6770204 s &mem_check_count            size=    4 bytes count=   1 memory_obj.c 184
+6770208 e &mem_check_count            END OF memory_obj.c 184
+6770200 s &mem_check_size             size=    4 bytes count=   1 memory_obj.c 185
+6770204 e &mem_check_size             END OF memory_obj.c 185
+6770196 s &igrid_size                 size=    4 bytes count=   1 memory_obj.c 186
+6770200 e &igrid_size                 END OF memory_obj.c 186
+6770192 s &pgrid_size                 size=    4 bytes count=   1 memory_obj.c 187
+6770196 e &pgrid_size                 END OF memory_obj.c 187
+6770188 s &wgrid_size                 size=    4 bytes count=   1 memory_obj.c 188
+6770192 e &wgrid_size                 END OF memory_obj.c 188
+6770184 s &bytes_p_grid               size=    4 bytes count=   1 memory_obj.c 190
+6770188 e &bytes_p_grid               END OF memory_obj.c 190
+6770180 s &bytes_p_grid_rounded2wordboundary size=    4 bytes count=   1 memory_obj.c 191
+6770184 e &bytes_p_grid_rounded2wordboundary END OF memory_obj.c 191
+6770176 s &bytes_p_packed_grid        size=    4 bytes count=   1 memory_obj.c 192
+6770180 e &bytes_p_packed_grid        END OF memory_obj.c 192
+6770172 s &bytes_p_packed_grid_rounded2wordboundary size=    4 bytes count=   1 memory_obj.c 193
+6770176 e &bytes_p_packed_grid_rounded2wordboundary END OF memory_obj.c 193
+6770168 s &bytes2allocate             size=    4 bytes count=   1 memory_obj.c 194
+6770172 e &bytes2allocate             END OF memory_obj.c 194
+6770160 s &mem_ptr                    size=    8 bytes count=   1 memory_obj.c 195
+6770168 e &mem_ptr                    END OF memory_obj.c 195
+6770152 s &igrid_count                size=    4 bytes count=   1 memory_obj.c 196
+6770156 e &igrid_count                END OF memory_obj.c 196
+6770148 s &pgrid_count                size=    4 bytes count=   1 memory_obj.c 197
+6770152 e &pgrid_count                END OF memory_obj.c 197
+6770144 s &wgrid_count                size=    4 bytes count=   1 memory_obj.c 198
+6770148 e &wgrid_count                END OF memory_obj.c 198
+6770136 s &memlog_fp                  size=    8 bytes count=   1 memory_obj.c 199
+6770144 e &memlog_fp                  END OF memory_obj.c 199
+6648044 s &type_of_processing         size=    4 bytes count=   1 proc_obj.c 50
+6648048 e &type_of_processing         END OF proc_obj.c 50
+6648040 s &total_runs                 size=    4 bytes count=   1 proc_obj.c 51
+6648044 e &total_runs                 END OF proc_obj.c 51
+6648032 s &last_run                   size=    4 bytes count=   1 proc_obj.c 52
+6648036 e &last_run                   END OF proc_obj.c 52
+6648028 s &last_mc                    size=    4 bytes count=   1 proc_obj.c 53
+6648032 e &last_mc                    END OF proc_obj.c 53
+6648024 s &current_run                size=    4 bytes count=   1 proc_obj.c 54
+6648028 e &current_run                END OF proc_obj.c 54
+6648020 s &current_monte_carlo        size=    4 bytes count=   1 proc_obj.c 55
+6648024 e &current_monte_carlo        END OF proc_obj.c 55
+6648016 s &current_year               size=    4 bytes count=   1 proc_obj.c 56
+6648020 e &current_year               END OF proc_obj.c 56
+6648012 s &stop_year                  size=    4 bytes count=   1 proc_obj.c 57
+6648016 e &stop_year                  END OF proc_obj.c 57
+6648004 s &last_run_flag              size=    4 bytes count=   1 proc_obj.c 58
+6648008 e &last_run_flag              END OF proc_obj.c 58
+6648000 s &last_mc_flag               size=    4 bytes count=   1 proc_obj.c 59
+6648004 e &last_mc_flag               END OF proc_obj.c 59
+6657120 s &class_indices[0]           size=  104 bytes count=  20 landclass_obj.c 78
+6659200 e &class_indices[0]           END OF landclass_obj.c 78
+6656096 s &new_indices[0]             size=    4 bytes count= 256 landclass_obj.c 79
+6657120 e &new_indices[0]             END OF landclass_obj.c 79
+6654016 s &landuse_classes[0]         size=  104 bytes count=  20 landclass_obj.c 80
+6656096 e &landuse_classes[0]         END OF landclass_obj.c 80
+6654012 s &urban_code                 size=    4 bytes count=   1 landclass_obj.c 81
+6654016 e &urban_code                 END OF landclass_obj.c 81
+6654008 s &num_landclasses            size=    4 bytes count=   1 landclass_obj.c 82
+6654012 e &num_landclasses            END OF landclass_obj.c 82
+6653856 s &filename                   size=    1 bytes count= 150 landclass_obj.c 83
+6653852 s &max_landclass_num          size=    4 bytes count=   1 landclass_obj.c 84
+6653856 e &max_landclass_num          END OF landclass_obj.c 84
+6653848 s &num_reduced_classes        size=    4 bytes count=   1 landclass_obj.c 85
+6653852 e &num_reduced_classes        END OF landclass_obj.c 85
+6653696 s &annual_prob_filename       size=    1 bytes count= 150 landclass_obj.c 86
+6653664 s &ugm_read                   size=    4 bytes count=   1 landclass_obj.c 87
+6653668 e &ugm_read                   END OF landclass_obj.c 87
+6660096 s &scenario                   size=58144 bytes count=   1 scenario_obj.c 128
+6718240 e &scenario                   END OF scenario_obj.c 128
+6653088 s &class_slope[0]             size=    8 bytes count=  20 transition_obj.c 70
+6653248 e &class_slope[0]             END OF transition_obj.c 70
+6649888 s &ftransition[0]             size=    8 bytes count= 400 transition_obj.c 71
+6653088 e &ftransition[0]             END OF transition_obj.c 71
+6649856 s &pct                        size=    8 bytes count=   1 transition_obj.c 72
+6649864 e &pct                        END OF transition_obj.c 72
+6648256 s &transition[0]              size=    4 bytes count= 400 transition_obj.c 73
+6649856 e &transition[0]              END OF transition_obj.c 73
+6648096 s &class_count[0][0]          size=    4 bytes count=  40 transition_obj.c 74
+6648256 e &class_count[0][0]          END OF transition_obj.c 74
+6648076 s &trans_count                size=    4 bytes count=   1 transition_obj.c 75
+6648080 e &trans_count                END OF transition_obj.c 75
+6648072 s &class_count_sum0           size=    4 bytes count=   1 transition_obj.c 76
+6648076 e &class_count_sum0           END OF transition_obj.c 76
+6648068 s &class_count_sum1           size=    4 bytes count=   1 transition_obj.c 77
+6648072 e &class_count_sum1           END OF transition_obj.c 77
+6648064 s &num_classes                size=    4 bytes count=   1 transition_obj.c 78
+6648068 e &num_classes                END OF transition_obj.c 78

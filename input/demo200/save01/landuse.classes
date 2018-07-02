@@ -1,0 +1,10 @@
+0 , Unclass , UNC   , 0X000000
+1 , Urban   , URB   , 0XFF0000 # 255,  0,   0
+2 , Agric   ,       , 0X646464
+3 , Range   ,       , 0X006400
+4 , Forest  ,       ,   0, 255,   0 # 0X00FF00
+5 , Water   , EXC   , 0X0000FF
+6 , Wetland ,       , 0X006464
+7 , Barren  ,       , 0X643232
+8 , Tundra  ,       , 0X323232
+9 , Ice&Sno ,       , 0XFFFFFF

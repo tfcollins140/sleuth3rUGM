@@ -1,0 +1,1649 @@
+
+
+***************************************************************************
+***************************************************************************
+**                                                                       **
+**                 SLEUTH:  MODIFIED VERSION D  7/13/2005                **
+**                          (URBAN GROWTH MODEL)                         **
+**                            Beta Version 3.0                           **
+**                     Release Date: December4, 2000                     **
+**                                                                       **
+**                                                                       **
+**  Notice:  This is a beta version.  It has been formally released      **
+**  by the U.S. Environmental Protection Agency (EPA) and should         **
+**  not be construed to represent Agency policy. This model is being     **
+**  circulated for comments on its technical merit and potential for     **
+**  policy implications.                                                 **
+**                                                                       **
+**  The U.S. Environmental Protection Agency through its Office          **
+**  of Research and Development Interagency Agreement #DW14938148-01-2   **
+**  with the United States Geological Survey partially funded and        **
+**  collaborated in the model described here. Implementation and         **
+**  redesign of the model code was conducted under contract #68W70055    **
+**  to Lockheed Martin Technical Services.  The model has not been       **
+**  subjected to Agency review .  Mention of trade names or              **
+**  commercial products does not constitute an endorsement or            **
+**  recommendation for use.                                              **
+**                                                                       **
+**  Contributors:                                                        **
+**                                                                       **
+**  Ronald W. Matheny                                                    **
+**  U.S. Environmental Protection Agency                                 **
+**  Landscape Characterization Branch MD-56                              **
+**  Research Triangle Park, NC 27771                                     **
+**  (Project Officer, coordination, parallelization, technical           **
+**  assistance, review and testing)                                      **
+**                                                                       **
+**  William Acevedo                                                      **
+**  United States Geological Survey                                      **
+**  Ames Research Center (242-4)                                         **
+**  Moffettfield, CA 94035                                               **
+**  (Project officer and coordination)                                   **
+**                                                                       **
+**  Keith Clarke                                                         **
+**  Department of Geography                                              **
+**                                                                       **
+**  University of California, Santa Barbara                              **
+**  Santa Barbara, CA 93117                                              **
+**  (Originator, theoretical constructs, testing)                        **
+**                                                                       **
+**  Jeannette Candau                                                     **
+**  United States Geological Survey &                                    **
+**  Department of Geography                                              **
+**  University of California, Santa Barbara                              **
+**  Santa Barbara, CA 93117                                              **
+**  (Theory, model development, redesign, review and testing)            **
+**                                                                       **
+**  David Hester                                                         **
+**  United States Geological Survey                                      **
+**  Rocky Mountain Mapping Center                                        **
+**  P.O. Box 25046, MS-516                                               **
+**  Denver, CO 80225-0046                                                **
+**  (Review and testing)                                                 **
+**                                                                       **
+**                                                                       **
+**  Mark Feller                                                          **
+**  United States Geological Survey                                      **
+**                                                                       **
+**  Rocky Mountain Mapping Center                                        **
+**  P.O. Box 25046, MS-516                                               **
+**  Denver, CO 80225-0046                                                **
+**  (Review and testing)                                                 **
+**                                                                       **
+**  George Xian                                                          **
+**  Raytheon Corporation (contract with USGS #8701)                      **
+**  EROS Data Center                                                     **
+**  Sioux Falls, SD 57198                                                **
+**  (Review and testing)                                                 **
+**                                                                       **
+**  Tommy E. Cathey                                                      **
+**  Lockheed Martin Technical Services                                   **
+**  National Environmental Supercomputing Center                         **
+**  United States Environmental Protection Agency                        **
+**  Research Triangle Park, NC 27711                                     **
+**  (Implementation, model redesign, parallelization, and coding)        **
+**                                                                       **
+***************************************************************************
+***************************************************************************
+
+
+
+
+Running SLEUTH TEST VERSION 3.0(Rev. D-2.0) [August 31, 2006]
+
+DATE OF RUN: Wed Jun 27 16:24:23 2018
+
+USER: ccsd
+HOST: (null)
+HOSTTYPE: (null)
+OSTYPE: (null)
+Type of architecture: 8 bit
+
+Number of CPUs 1 
+
+PWD: /home/ccsd/sleuth/scenarios
+Scenario File: scenario.demo200_test
+Type of Processing: TESTING
+
+
+scenario.filename = scenario.demo200_test
+scenario.input_dir = ../input/demo200/
+scenario.output_dir = ../output/demo200/
+scenario.whirlgif_binary = ../Whirlgif/whirlgif
+scenario.urban_data_file[0] = demo200.urban.1930.gif
+scenario.urban_data_file[1] = demo200.urban.1950.gif
+scenario.urban_data_file[2] = demo200.urban.1970.gif
+scenario.urban_data_file[3] = demo200.urban.1990.gif
+scenario.road_data_file[0] = demo200.roads.1930.gif
+scenario.road_data_file[1] = demo200.roads.1950.gif
+scenario.road_data_file[2] = demo200.roads.1970.gif
+scenario.road_data_file[3] = demo200.roads.1990.gif
+scenario.excluded_data_file = demo200.excluded.gif
+scenario.slope_data_file = demo200.slope.gif
+scenario.background_data_file = demo200.hillshade.water.gif
+scenario.echo = 1
+scenario.logging = 1
+scenario.log_processing_status = 1
+scenario.random_seed = 9407
+scenario.num_working_grids = 5
+scenario.monte_carlo_iterations = 1000
+scenario.start.diffusion = 5
+scenario.stop.diffusion = 5
+scenario.step.diffusion = 1
+scenario.best_fit.diffusion = 20
+scenario.start.breed = 5
+scenario.stop.breed = 5
+scenario.step.breed = 1
+scenario.best_fit.breed = 20
+scenario.start.spread = 10
+scenario.stop.spread = 10
+scenario.step.spread = 1
+scenario.best_fit.spread = 20
+scenario.start.slope_resistance = 95
+scenario.stop.slope_resistance = 95
+scenario.step.slope_resistance = 1
+scenario.best_fit.slope_resistance = 20
+scenario.start.road_gravity = 5
+scenario.stop.road_gravity = 5
+scenario.step.road_gravity = 1
+scenario.best_fit.road_gravity = 20
+scenario.prediction_start_date = 1990
+scenario.prediction_stop_date = 2010
+scenario.date_color = ffffff
+scenario.seed_color = f9d16e
+scenario.water_color = 1434d6
+scenario.probability_color[0].lower_bound = 0
+scenario.probability_color[0].upper_bound = 50
+scenario.probability_color[0].color = 0
+scenario.rd_grav_sensitivity = 0.010000
+scenario.slope_sensitivity = 0.100000
+scenario.critical_low = 0.970000
+scenario.critical_high = 1.300000
+scenario.critical_slope = 21.000000
+scenario.boom = 1.010000
+scenario.bust = 0.900000
+scenario.log_base_stats = 1
+scenario.log_debug = 1
+scenario.log_urbanization_attempts = 0
+scenario.log_coeff = 0
+scenario.log_timings = 1
+scenario.write_avg_file = 1
+scenario.write_std_dev_file = 1
+scenario.log_memory_map = 1
+scenario.log_landclass_summary = 1
+scenario.log_slope_weights = 0
+scenario.log_reads = 0
+scenario.log_writes = 0
+scenario.log_colortables = 0
+scenario.log_processing_status = 1
+scenario.log_trans_matrix = 1
+scenario.view_growth_types = 0
+scenario.growth_type_window.run1 = 0
+scenario.growth_type_window.run2 = 0
+scenario.growth_type_window.monte_carlo1 = 0
+scenario.growth_type_window.monte_carlo2 = 0
+scenario.growth_type_window.year1 = 1995
+scenario.growth_type_window.year2 = 2020
+scenario.phase0g_growth_color = ff0000
+scenario.phase1g_growth_color = ff00
+scenario.phase2g_growth_color = ff
+scenario.phase3g_growth_color = ffff00
+scenario.phase4g_growth_color = ffffff
+scenario.phase5g_growth_color = ffff
+scenario.view_deltatron_aging = 0
+scenario.deltatron_aging_window.run1 = 0
+scenario.deltatron_aging_window.run2 = 0
+scenario.deltatron_aging_window.monte_carlo1 = 0
+scenario.deltatron_aging_window.monte_carlo2 = 0
+scenario.deltatron_aging_window.year1 = 1930
+scenario.deltatron_aging_window.year2 = 2020
+AUX_DIFFUSION_COEFF = -1.000000
+AUX_BREED_COEFF = -1.000000
+AUX_DIFFUSION_MULT = -1.000000
+WRITE_SLOPE_FILE = 1
+WRITE_RATIO_FILE = 1
+WRITE_XYPOINTS_FILE = 1
+scenario.deltatron_color[0] = 0
+scenario.deltatron_color[1] = 65280
+scenario.deltatron_color[2] = 53760
+scenario.deltatron_color[3] = 43520
+scenario.deltatron_color[4] = 33280
+scenario.deltatron_color[5] = 23040
+coeff_obj.c 1237 start_coeff.diffusion = 5
+coeff_obj.c 1238 start_coeff.spread = 10
+coeff_obj.c 1239 start_coeff.breed = 5
+coeff_obj.c 1240 start_coeff.slope_resistance = 95
+coeff_obj.c 1241 start_coeff.road_gravity = 5
+coeff_obj.c 1258 stop_coeff.diffusion = 5
+coeff_obj.c 1259 stop_coeff.spread = 10
+coeff_obj.c 1260 stop_coeff.breed = 5
+coeff_obj.c 1261 stop_coeff.slope_resistance = 95
+coeff_obj.c 1262 stop_coeff.road_gravity = 5
+coeff_obj.c 1216 step_coeff.diffusion = 1
+coeff_obj.c 1217 step_coeff.spread = 1
+coeff_obj.c 1218 step_coeff.breed = 1
+coeff_obj.c 1219 step_coeff.slope_resistance = 1
+coeff_obj.c 1220 step_coeff.road_gravity = 1
+coeff_obj.c 1279 best_fit_coeff.diffusion = 20
+coeff_obj.c 1280 best_fit_coeff.spread = 20
+coeff_obj.c 1281 best_fit_coeff.breed = 20
+coeff_obj.c 1282 best_fit_coeff.slope_resistance = 20
+coeff_obj.c 1283 best_fit_coeff.road_gravity = 20
+memory_obj.c 773 Allocated 880023 bytes of memory
+memory_obj.c 795 Allocated 40000 bytes of memory (GRC row)
+memory_obj.c 815 Allocated 40000 bytes of memory (GRC col)
+memory_obj.c 842 Allocated 1600 bytes of memory (RPO row)
+memory_obj.c 842 Allocated 1600 bytes of memory (RPO row)
+memory_obj.c 842 Allocated 1600 bytes of memory (RPO row)
+memory_obj.c 842 Allocated 1600 bytes of memory (RPO row)
+igrid_array[0].ptr = 32878529
+igrid_array[1].ptr = 32918530
+igrid_array[2].ptr = 32958531
+igrid_array[3].ptr = 32998532
+igrid_array[4].ptr = 33038533
+igrid_array[5].ptr = 33078534
+igrid_array[6].ptr = 33118535
+igrid_array[7].ptr = 33158536
+igrid_array[8].ptr = 33198537
+igrid_array[9].ptr = 33238538
+igrid_array[10].ptr = 33278539
+pgrid_array[0].ptr = 33318540
+pgrid_array[1].ptr = 33358541
+pgrid_array[2].ptr = 33398542
+pgrid_array[3].ptr = 33438543
+pgrid_array[4].ptr = 33478544
+pgrid_array[5].ptr = 33518545
+wgrid_array[0].ptr = 33558546
+wgrid_array[1].ptr = 33598547
+wgrid_array[2].ptr = 33638548
+wgrid_array[3].ptr = 33678549
+wgrid_array[4].ptr = 33718550
+mem_check_array[0].ptr = 32878528
+mem_check_array[1].ptr = 32918529
+mem_check_array[2].ptr = 32958530
+mem_check_array[3].ptr = 32998531
+mem_check_array[4].ptr = 33038532
+mem_check_array[5].ptr = 33078533
+mem_check_array[6].ptr = 33118534
+mem_check_array[7].ptr = 33158535
+mem_check_array[8].ptr = 33198536
+mem_check_array[9].ptr = 33238537
+mem_check_array[10].ptr = 33278538
+mem_check_array[11].ptr = 33318539
+mem_check_array[12].ptr = 33358540
+mem_check_array[13].ptr = 33398541
+mem_check_array[14].ptr = 33438542
+mem_check_array[15].ptr = 33478543
+mem_check_array[16].ptr = 33518544
+mem_check_array[17].ptr = 33558545
+mem_check_array[18].ptr = 33598546
+mem_check_array[19].ptr = 33638547
+mem_check_array[20].ptr = 33678548
+mem_check_array[21].ptr = 33718549
+mem_check_array[22].ptr = 33758550
+memory_obj.c 517 MEMORY CHECK at main.c main 496
+MEMORY CHECK OK
+
+*******************************************************
+*******************************************************
+         VALIDATING INPUT GRIDS
+
+Validating urban input grid: ../input/demo200/demo200.urban.1930.gif
+
+Index Count PercentOfImage
+  0  39402     98.50%
+255    598      1.50%
+
+Validating urban input grid: ../input/demo200/demo200.urban.1950.gif
+
+Index Count PercentOfImage
+  0  39139     97.85%
+255    861      2.15%
+
+Validating urban input grid: ../input/demo200/demo200.urban.1970.gif
+
+Index Count PercentOfImage
+  0  38179     95.45%
+255   1821      4.55%
+
+Validating urban input grid: ../input/demo200/demo200.urban.1990.gif
+
+Index Count PercentOfImage
+  0  36119     90.30%
+255   3881      9.70%
+
+Validating road input grid: ../input/demo200/demo200.roads.1930.gif
+
+Index Count PercentOfImage
+  0  39625     99.06%
+255    375      0.94%
+
+Validating road input grid: ../input/demo200/demo200.roads.1950.gif
+
+Index Count PercentOfImage
+  0  39335     98.34%
+255    665      1.66%
+
+Validating road input grid: ../input/demo200/demo200.roads.1970.gif
+
+Index Count PercentOfImage
+  0  39055     97.64%
+255    945      2.36%
+
+Validating road input grid: ../input/demo200/demo200.roads.1990.gif
+
+Index Count PercentOfImage
+  0  38896     97.24%
+255   1104      2.76%
+
+Validating slope input grid: ../input/demo200/demo200.slope.gif
+
+Validating excluded input grid: ../input/demo200/demo200.excluded.gif
+
+Validating background input grid: ../input/demo200/demo200.hillshade.water.gif
+
+Validation OK
+*******************************************************
+*******************************************************
+
+
+*******************************INPUT GIFs*******************************
+
+  Urban GIFs
+      rowXcol cb bpp path
+      rowXcol cb bpp min max path
+      200X200  7  8    0 255 ../input/demo200/demo200.urban.1930.gif
+      200X200  7  8    0 255 ../input/demo200/demo200.urban.1950.gif
+      200X200  8  8    0 255 ../input/demo200/demo200.urban.1970.gif
+      200X200  8  8    0 255 ../input/demo200/demo200.urban.1990.gif
+  Road GIFs
+      rowXcol cb bpp path
+      200X200  7  8    0 255 ../input/demo200/demo200.roads.1930.gif
+      200X200  7  8    0 255 ../input/demo200/demo200.roads.1950.gif
+      200X200  7  8    0 255 ../input/demo200/demo200.roads.1970.gif
+      200X200  7  8    0 255 ../input/demo200/demo200.roads.1990.gif
+  Landuse GIFs
+      rowXcol cb bpp path
+  Excluded GIF
+      rowXcol cb bpp path
+      200X200  8  8    1 100 ../input/demo200/demo200.excluded.gif
+  Slope GIF
+      rowXcol cb bpp path
+      200X200  7  8    0  41 ../input/demo200/demo200.slope.gif
+  Background GIF
+      rowXcol cb bpp path
+      200X200  7  7    0 223 ../input/demo200/demo200.hillshade.water.gif
+cb = # of color bits
+bpp = # bits per pixel
+
+
+
+Verifying Data Input Files
+igrid_obj.c 1669 Data Input Files: OK
+
+
+************************LOG OF BASE STATISTICS FOR URBAN INPUT DATA********************
+ Year       Area      Edges   Clusters         Pop       Mean Center        Radius   Avg Slope  MeanClusterSize
+ 1930     598.00     307.00      21.00      598.00  (   87.40,  118.54)      13.80        1.18      28.000
+ 1950     861.00     391.00      22.00      861.00  (   89.40,  111.49)      16.55        1.64      39.000
+ 1970    1821.00     722.00      43.00     1821.00  (   88.86,  107.36)      24.08        2.05      42.000
+ 1990    3881.00    1171.00      41.00     3881.00  (   86.65,  105.71)      35.15        2.45      94.000
+
+
+igrid_obj.c 654 *******************************************
+igrid_obj.c 655   CURRENT STATE OF IGRID OBJECT
+igrid_obj.c 657   module: main.c line: 659
+igrid_obj.c 659 *******************************************
+igrid_obj.c 660 &igrid = 6718496
+igrid_obj.c 661 igrid.location = demo200
+igrid_obj.c 664 igrid.urban_count = 4
+igrid_obj.c 666 igrid.road_count = 4
+igrid_obj.c 668 igrid.landuse_count = 0
+igrid_obj.c 670 igrid.excluded_count = 1
+igrid_obj.c 672 igrid.slope_count = 1
+igrid_obj.c 674 igrid.background_count = 1
+
+igrid_obj.c 677 Urban grid #0 
+grid_obj.c 130 grid_ptr = 6718672
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.urban.1930.gif
+grid_obj.c 132 grid_ptr->ptr = 33278539
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1930
+grid_obj.c 143 grid_ptr->year.string = 1930
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=39402    98.50%
+grid_obj.c 149 grid_ptr->histogram[255]=  598     1.50%
+
+igrid_obj.c 677 Urban grid #1 
+grid_obj.c 130 grid_ptr = 6719904
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.urban.1950.gif
+grid_obj.c 132 grid_ptr->ptr = 33238538
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1950
+grid_obj.c 143 grid_ptr->year.string = 1950
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=39139    97.85%
+grid_obj.c 149 grid_ptr->histogram[255]=  861     2.15%
+
+igrid_obj.c 677 Urban grid #2 
+grid_obj.c 130 grid_ptr = 6721136
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.urban.1970.gif
+grid_obj.c 132 grid_ptr->ptr = 33198537
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 8
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1970
+grid_obj.c 143 grid_ptr->year.string = 1970
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=38179    95.45%
+grid_obj.c 149 grid_ptr->histogram[255]= 1821     4.55%
+
+igrid_obj.c 677 Urban grid #3 
+grid_obj.c 130 grid_ptr = 6722368
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.urban.1990.gif
+grid_obj.c 132 grid_ptr->ptr = 33158536
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 8
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1990
+grid_obj.c 143 grid_ptr->year.string = 1990
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=36119    90.30%
+grid_obj.c 149 grid_ptr->histogram[255]= 3881     9.70%
+
+igrid_obj.c 682 Road grid #0 
+grid_obj.c 130 grid_ptr = 6737152
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.roads.1930.gif
+grid_obj.c 132 grid_ptr->ptr = 33118535
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1930
+grid_obj.c 143 grid_ptr->year.string = 1930
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=39625    99.06%
+grid_obj.c 149 grid_ptr->histogram[255]=  375     0.94%
+
+igrid_obj.c 682 Road grid #1 
+grid_obj.c 130 grid_ptr = 6738384
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.roads.1950.gif
+grid_obj.c 132 grid_ptr->ptr = 33078534
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1950
+grid_obj.c 143 grid_ptr->year.string = 1950
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=39335    98.34%
+grid_obj.c 149 grid_ptr->histogram[255]=  665     1.66%
+
+igrid_obj.c 682 Road grid #2 
+grid_obj.c 130 grid_ptr = 6739616
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.roads.1970.gif
+grid_obj.c 132 grid_ptr->ptr = 33038533
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1970
+grid_obj.c 143 grid_ptr->year.string = 1970
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=39055    97.64%
+grid_obj.c 149 grid_ptr->histogram[255]=  945     2.36%
+
+igrid_obj.c 682 Road grid #3 
+grid_obj.c 130 grid_ptr = 6740848
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.roads.1990.gif
+grid_obj.c 132 grid_ptr->ptr = 32998532
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 255
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 1990
+grid_obj.c 143 grid_ptr->year.string = 1990
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=38896    97.24%
+grid_obj.c 149 grid_ptr->histogram[255]= 1104     2.76%
+
+igrid_obj.c 690 Excluded grid
+grid_obj.c 130 grid_ptr = 6758096
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.excluded.gif
+grid_obj.c 132 grid_ptr->ptr = 32958531
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 8
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 100
+grid_obj.c 141 grid_ptr->min = 1
+grid_obj.c 142 grid_ptr->year.digit = 0
+grid_obj.c 143 grid_ptr->year.string = 
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  1]=35775    89.44%
+grid_obj.c 149 grid_ptr->histogram[100]= 4225    10.56%
+
+igrid_obj.c 692 Slope grid
+grid_obj.c 130 grid_ptr = 6759328
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.slope.gif
+grid_obj.c 132 grid_ptr->ptr = 32918530
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 8
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 41
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 0
+grid_obj.c 143 grid_ptr->year.string = 
+grid_obj.c 144 Index Count PercentOfImage
+grid_obj.c 149 grid_ptr->histogram[  0]=10722    26.80%
+grid_obj.c 149 grid_ptr->histogram[  1]= 4936    12.34%
+grid_obj.c 149 grid_ptr->histogram[  2]= 4433    11.08%
+grid_obj.c 149 grid_ptr->histogram[  3]= 3414     8.54%
+grid_obj.c 149 grid_ptr->histogram[  4]= 2636     6.59%
+grid_obj.c 149 grid_ptr->histogram[  5]= 2322     5.80%
+grid_obj.c 149 grid_ptr->histogram[  6]= 1869     4.67%
+grid_obj.c 149 grid_ptr->histogram[  7]= 1655     4.14%
+grid_obj.c 149 grid_ptr->histogram[  8]= 1409     3.52%
+grid_obj.c 149 grid_ptr->histogram[  9]= 1144     2.86%
+grid_obj.c 149 grid_ptr->histogram[ 10]=  938     2.35%
+grid_obj.c 149 grid_ptr->histogram[ 11]=  785     1.96%
+grid_obj.c 149 grid_ptr->histogram[ 12]=  681     1.70%
+grid_obj.c 149 grid_ptr->histogram[ 13]=  552     1.38%
+grid_obj.c 149 grid_ptr->histogram[ 14]=  435     1.09%
+grid_obj.c 149 grid_ptr->histogram[ 15]=  407     1.02%
+grid_obj.c 149 grid_ptr->histogram[ 16]=  341     0.85%
+grid_obj.c 149 grid_ptr->histogram[ 17]=  264     0.66%
+grid_obj.c 149 grid_ptr->histogram[ 18]=  212     0.53%
+grid_obj.c 149 grid_ptr->histogram[ 19]=  175     0.44%
+grid_obj.c 149 grid_ptr->histogram[ 20]=  144     0.36%
+grid_obj.c 149 grid_ptr->histogram[ 21]=  129     0.32%
+grid_obj.c 149 grid_ptr->histogram[ 22]=  104     0.26%
+grid_obj.c 149 grid_ptr->histogram[ 23]=   74     0.18%
+grid_obj.c 149 grid_ptr->histogram[ 24]=   55     0.14%
+grid_obj.c 149 grid_ptr->histogram[ 25]=   45     0.11%
+grid_obj.c 149 grid_ptr->histogram[ 26]=   37     0.09%
+grid_obj.c 149 grid_ptr->histogram[ 27]=   25     0.06%
+grid_obj.c 149 grid_ptr->histogram[ 28]=   19     0.05%
+grid_obj.c 149 grid_ptr->histogram[ 29]=    8     0.02%
+grid_obj.c 149 grid_ptr->histogram[ 30]=   11     0.03%
+grid_obj.c 149 grid_ptr->histogram[ 31]=   10     0.03%
+grid_obj.c 149 grid_ptr->histogram[ 32]=    3     0.01%
+grid_obj.c 149 grid_ptr->histogram[ 33]=    1     0.00%
+grid_obj.c 149 grid_ptr->histogram[ 34]=    1     0.00%
+grid_obj.c 149 grid_ptr->histogram[ 35]=    2     0.01%
+grid_obj.c 149 grid_ptr->histogram[ 37]=    1     0.00%
+grid_obj.c 149 grid_ptr->histogram[ 41]=    1     0.00%
+
+igrid_obj.c 694 Background grid
+grid_obj.c 130 grid_ptr = 6760560
+grid_obj.c 131 grid_ptr->filename = ../input/demo200/demo200.hillshade.water.gif
+grid_obj.c 132 grid_ptr->ptr = 32878529
+grid_obj.c 133 grid_ptr->packed = 0
+grid_obj.c 134 grid_ptr->color_bits = 7
+grid_obj.c 135 grid_ptr->bits_per_pixel = 7
+grid_obj.c 136 grid_ptr->size_words = 40000
+grid_obj.c 137 grid_ptr->size_bytes = 40000
+grid_obj.c 138 grid_ptr->nrows = 200
+grid_obj.c 139 grid_ptr->ncols = 200
+grid_obj.c 140 grid_ptr->max = 223
+grid_obj.c 141 grid_ptr->min = 0
+grid_obj.c 142 grid_ptr->year.digit = 0
+grid_obj.c 143 grid_ptr->year.string = 
+grid_obj.c 144 Index Count PercentOfImage
+igrid_obj.c 697 *******************************************
+igrid_obj.c 699 *******************************************
+growth.c 813 Run= 0 of 1 MC=   0 of 1000 
+growth.c 813 Run= 0 of 1 MC=   1 of 1000   0.100% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:45
+growth.c 813 Run= 0 of 1 MC=   2 of 1000   0.200% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:35
+growth.c 813 Run= 0 of 1 MC=   3 of 1000   0.300% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:31
+growth.c 813 Run= 0 of 1 MC=   4 of 1000   0.400% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:30
+growth.c 813 Run= 0 of 1 MC=   5 of 1000   0.500% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:28
+growth.c 813 Run= 0 of 1 MC=   6 of 1000   0.600% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:28
+growth.c 813 Run= 0 of 1 MC=   7 of 1000   0.700% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:27
+growth.c 813 Run= 0 of 1 MC=   8 of 1000   0.800% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:27
+growth.c 813 Run= 0 of 1 MC=   9 of 1000   0.900% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:26
+growth.c 813 Run= 0 of 1 MC=  10 of 1000   1.000% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:26
+growth.c 813 Run= 0 of 1 MC=  11 of 1000   1.100% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:26
+growth.c 813 Run= 0 of 1 MC=  12 of 1000   1.200% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:26
+growth.c 813 Run= 0 of 1 MC=  13 of 1000   1.300% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:26
+growth.c 813 Run= 0 of 1 MC=  14 of 1000   1.400% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  15 of 1000   1.500% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  16 of 1000   1.600% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  17 of 1000   1.700% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  18 of 1000   1.800% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  19 of 1000   1.900% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  20 of 1000   2.000% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  21 of 1000   2.100% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  22 of 1000   2.200% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  23 of 1000   2.300% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  24 of 1000   2.400% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  25 of 1000   2.500% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:25
+growth.c 813 Run= 0 of 1 MC=  26 of 1000   2.600% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  27 of 1000   2.700% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  28 of 1000   2.800% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  29 of 1000   2.900% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  30 of 1000   3.000% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  31 of 1000   3.100% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  32 of 1000   3.200% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  33 of 1000   3.300% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  34 of 1000   3.400% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  35 of 1000   3.500% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  36 of 1000   3.600% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  37 of 1000   3.700% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  38 of 1000   3.800% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  39 of 1000   3.900% complete; Elapsed=0000:00:00:00 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  40 of 1000   4.000% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  41 of 1000   4.100% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  42 of 1000   4.200% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  43 of 1000   4.300% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  44 of 1000   4.400% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  45 of 1000   4.500% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  46 of 1000   4.600% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  47 of 1000   4.700% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  48 of 1000   4.800% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  49 of 1000   4.900% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  50 of 1000   5.000% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  51 of 1000   5.100% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  52 of 1000   5.200% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  53 of 1000   5.300% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  54 of 1000   5.400% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  55 of 1000   5.500% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  56 of 1000   5.600% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:24
+growth.c 813 Run= 0 of 1 MC=  57 of 1000   5.700% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  58 of 1000   5.800% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  59 of 1000   5.900% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  60 of 1000   6.000% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  61 of 1000   6.100% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  62 of 1000   6.200% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  63 of 1000   6.300% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  64 of 1000   6.400% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  65 of 1000   6.500% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  66 of 1000   6.600% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  67 of 1000   6.700% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  68 of 1000   6.800% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  69 of 1000   6.900% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  70 of 1000   7.000% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  71 of 1000   7.100% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  72 of 1000   7.200% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  73 of 1000   7.300% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  74 of 1000   7.400% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  75 of 1000   7.500% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  76 of 1000   7.600% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  77 of 1000   7.700% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  78 of 1000   7.800% complete; Elapsed=0000:00:00:01 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  79 of 1000   7.900% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  80 of 1000   8.000% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  81 of 1000   8.100% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  82 of 1000   8.200% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  83 of 1000   8.300% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  84 of 1000   8.400% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  85 of 1000   8.500% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  86 of 1000   8.600% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  87 of 1000   8.700% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  88 of 1000   8.800% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  89 of 1000   8.900% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  90 of 1000   9.000% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  91 of 1000   9.100% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  92 of 1000   9.200% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  93 of 1000   9.300% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  94 of 1000   9.400% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  95 of 1000   9.500% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  96 of 1000   9.600% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  97 of 1000   9.700% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  98 of 1000   9.800% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC=  99 of 1000   9.900% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 100 of 1000  10.000% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 101 of 1000  10.100% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 102 of 1000  10.200% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 103 of 1000  10.300% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 104 of 1000  10.400% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 105 of 1000  10.500% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 106 of 1000  10.600% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 107 of 1000  10.700% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 108 of 1000  10.800% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 109 of 1000  10.900% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 110 of 1000  11.000% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 111 of 1000  11.100% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 112 of 1000  11.200% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:23
+growth.c 813 Run= 0 of 1 MC= 113 of 1000  11.300% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 114 of 1000  11.400% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 115 of 1000  11.500% complete; Elapsed=0000:00:00:02 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 116 of 1000  11.600% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 117 of 1000  11.700% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 118 of 1000  11.800% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 119 of 1000  11.900% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 120 of 1000  12.000% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 121 of 1000  12.100% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 122 of 1000  12.200% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 123 of 1000  12.300% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 124 of 1000  12.400% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 125 of 1000  12.500% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 126 of 1000  12.600% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 127 of 1000  12.700% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 128 of 1000  12.800% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 129 of 1000  12.900% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 130 of 1000  13.000% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 131 of 1000  13.100% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 132 of 1000  13.200% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 133 of 1000  13.300% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 134 of 1000  13.400% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 135 of 1000  13.500% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 136 of 1000  13.600% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 137 of 1000  13.700% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 138 of 1000  13.800% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 139 of 1000  13.900% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 140 of 1000  14.000% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 141 of 1000  14.100% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 142 of 1000  14.200% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 143 of 1000  14.300% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 144 of 1000  14.400% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 145 of 1000  14.500% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 146 of 1000  14.600% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 147 of 1000  14.700% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 148 of 1000  14.800% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 149 of 1000  14.900% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 150 of 1000  15.000% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 151 of 1000  15.100% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 152 of 1000  15.200% complete; Elapsed=0000:00:00:03 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 153 of 1000  15.300% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 154 of 1000  15.400% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 155 of 1000  15.500% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 156 of 1000  15.600% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 157 of 1000  15.700% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 158 of 1000  15.800% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 159 of 1000  15.900% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:22
+growth.c 813 Run= 0 of 1 MC= 160 of 1000  16.000% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 161 of 1000  16.100% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 162 of 1000  16.200% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 163 of 1000  16.300% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 164 of 1000  16.400% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 165 of 1000  16.500% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 166 of 1000  16.600% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 167 of 1000  16.700% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 168 of 1000  16.800% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 169 of 1000  16.900% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 170 of 1000  17.000% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 171 of 1000  17.100% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 172 of 1000  17.200% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 173 of 1000  17.300% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 174 of 1000  17.400% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 175 of 1000  17.500% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 176 of 1000  17.600% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 177 of 1000  17.700% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 178 of 1000  17.800% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 179 of 1000  17.900% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 180 of 1000  18.000% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 181 of 1000  18.100% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 182 of 1000  18.200% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 183 of 1000  18.300% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 184 of 1000  18.400% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 185 of 1000  18.500% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 186 of 1000  18.600% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 187 of 1000  18.700% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 188 of 1000  18.800% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 189 of 1000  18.900% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 190 of 1000  19.000% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 191 of 1000  19.100% complete; Elapsed=0000:00:00:04 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 192 of 1000  19.200% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 193 of 1000  19.300% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 194 of 1000  19.400% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:21
+growth.c 813 Run= 0 of 1 MC= 195 of 1000  19.500% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 196 of 1000  19.600% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 197 of 1000  19.700% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 198 of 1000  19.800% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 199 of 1000  19.900% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 200 of 1000  20.000% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 201 of 1000  20.100% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 202 of 1000  20.200% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 203 of 1000  20.300% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 204 of 1000  20.400% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 205 of 1000  20.500% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 206 of 1000  20.600% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 207 of 1000  20.700% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 208 of 1000  20.800% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 209 of 1000  20.900% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 210 of 1000  21.000% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 211 of 1000  21.100% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 212 of 1000  21.200% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 213 of 1000  21.300% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 214 of 1000  21.400% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 215 of 1000  21.500% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 216 of 1000  21.600% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 217 of 1000  21.700% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 218 of 1000  21.800% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 219 of 1000  21.900% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 220 of 1000  22.000% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 221 of 1000  22.100% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 222 of 1000  22.200% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 223 of 1000  22.300% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 224 of 1000  22.400% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 225 of 1000  22.500% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 226 of 1000  22.600% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 227 of 1000  22.700% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 228 of 1000  22.800% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:20
+growth.c 813 Run= 0 of 1 MC= 229 of 1000  22.900% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 230 of 1000  23.000% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 231 of 1000  23.100% complete; Elapsed=0000:00:00:05 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 232 of 1000  23.200% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 233 of 1000  23.300% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 234 of 1000  23.400% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 235 of 1000  23.500% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 236 of 1000  23.600% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 237 of 1000  23.700% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 238 of 1000  23.800% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 239 of 1000  23.900% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 240 of 1000  24.000% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 241 of 1000  24.100% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 242 of 1000  24.200% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 243 of 1000  24.300% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 244 of 1000  24.400% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 245 of 1000  24.500% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 246 of 1000  24.600% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 247 of 1000  24.700% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 248 of 1000  24.800% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 249 of 1000  24.900% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 250 of 1000  25.000% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 251 of 1000  25.100% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 252 of 1000  25.200% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 253 of 1000  25.300% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 254 of 1000  25.400% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 255 of 1000  25.500% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 256 of 1000  25.600% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 257 of 1000  25.700% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 258 of 1000  25.800% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 259 of 1000  25.900% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 260 of 1000  26.000% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 261 of 1000  26.100% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 262 of 1000  26.200% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 263 of 1000  26.300% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 264 of 1000  26.400% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:19
+growth.c 813 Run= 0 of 1 MC= 265 of 1000  26.500% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 266 of 1000  26.600% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 267 of 1000  26.700% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 268 of 1000  26.800% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 269 of 1000  26.900% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 270 of 1000  27.000% complete; Elapsed=0000:00:00:06 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 271 of 1000  27.100% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 272 of 1000  27.200% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 273 of 1000  27.300% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 274 of 1000  27.400% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 275 of 1000  27.500% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 276 of 1000  27.600% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 277 of 1000  27.700% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 278 of 1000  27.800% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 279 of 1000  27.900% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 280 of 1000  28.000% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 281 of 1000  28.100% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 282 of 1000  28.200% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 283 of 1000  28.300% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 284 of 1000  28.400% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 285 of 1000  28.500% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 286 of 1000  28.600% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 287 of 1000  28.700% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 288 of 1000  28.800% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 289 of 1000  28.900% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 290 of 1000  29.000% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 291 of 1000  29.100% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 292 of 1000  29.200% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 293 of 1000  29.300% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 294 of 1000  29.400% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 295 of 1000  29.500% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 296 of 1000  29.600% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 297 of 1000  29.700% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 298 of 1000  29.800% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 299 of 1000  29.900% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 300 of 1000  30.000% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 301 of 1000  30.100% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 302 of 1000  30.200% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:18
+growth.c 813 Run= 0 of 1 MC= 303 of 1000  30.300% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 304 of 1000  30.400% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 305 of 1000  30.500% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 306 of 1000  30.600% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 307 of 1000  30.700% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 308 of 1000  30.800% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 309 of 1000  30.900% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 310 of 1000  31.000% complete; Elapsed=0000:00:00:07 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 311 of 1000  31.100% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 312 of 1000  31.200% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 313 of 1000  31.300% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 314 of 1000  31.400% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 315 of 1000  31.500% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 316 of 1000  31.600% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 317 of 1000  31.700% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 318 of 1000  31.800% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 319 of 1000  31.900% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 320 of 1000  32.000% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 321 of 1000  32.100% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 322 of 1000  32.200% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 323 of 1000  32.300% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 324 of 1000  32.400% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 325 of 1000  32.500% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 326 of 1000  32.600% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 327 of 1000  32.700% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 328 of 1000  32.800% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 329 of 1000  32.900% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 330 of 1000  33.000% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 331 of 1000  33.100% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 332 of 1000  33.200% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 333 of 1000  33.300% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 334 of 1000  33.400% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 335 of 1000  33.500% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 336 of 1000  33.600% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 337 of 1000  33.700% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 338 of 1000  33.800% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 339 of 1000  33.900% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:17
+growth.c 813 Run= 0 of 1 MC= 340 of 1000  34.000% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 341 of 1000  34.100% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 342 of 1000  34.200% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 343 of 1000  34.300% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 344 of 1000  34.400% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 345 of 1000  34.500% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 346 of 1000  34.600% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 347 of 1000  34.700% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 348 of 1000  34.800% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 349 of 1000  34.900% complete; Elapsed=0000:00:00:08 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 350 of 1000  35.000% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 351 of 1000  35.100% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 352 of 1000  35.200% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 353 of 1000  35.300% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 354 of 1000  35.400% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 355 of 1000  35.500% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 356 of 1000  35.600% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 357 of 1000  35.700% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 358 of 1000  35.800% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 359 of 1000  35.900% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 360 of 1000  36.000% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 361 of 1000  36.100% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 362 of 1000  36.200% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 363 of 1000  36.300% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 364 of 1000  36.400% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 365 of 1000  36.500% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 366 of 1000  36.600% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 367 of 1000  36.700% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 368 of 1000  36.800% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 369 of 1000  36.900% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 370 of 1000  37.000% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 371 of 1000  37.100% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 372 of 1000  37.200% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 373 of 1000  37.300% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 374 of 1000  37.400% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 375 of 1000  37.500% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 376 of 1000  37.600% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:16
+growth.c 813 Run= 0 of 1 MC= 377 of 1000  37.700% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 378 of 1000  37.800% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 379 of 1000  37.900% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 380 of 1000  38.000% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 381 of 1000  38.100% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 382 of 1000  38.200% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 383 of 1000  38.300% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 384 of 1000  38.400% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 385 of 1000  38.500% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 386 of 1000  38.600% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 387 of 1000  38.700% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 388 of 1000  38.800% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 389 of 1000  38.900% complete; Elapsed=0000:00:00:09 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 390 of 1000  39.000% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 391 of 1000  39.100% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 392 of 1000  39.200% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 393 of 1000  39.300% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 394 of 1000  39.400% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 395 of 1000  39.500% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 396 of 1000  39.600% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 397 of 1000  39.700% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 398 of 1000  39.800% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 399 of 1000  39.900% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 400 of 1000  40.000% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 401 of 1000  40.100% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 402 of 1000  40.200% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 403 of 1000  40.300% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 404 of 1000  40.400% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 405 of 1000  40.500% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 406 of 1000  40.600% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 407 of 1000  40.700% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 408 of 1000  40.800% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 409 of 1000  40.900% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 410 of 1000  41.000% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 411 of 1000  41.100% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 412 of 1000  41.200% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 413 of 1000  41.300% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 414 of 1000  41.400% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:15
+growth.c 813 Run= 0 of 1 MC= 415 of 1000  41.500% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 416 of 1000  41.600% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 417 of 1000  41.700% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 418 of 1000  41.800% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 419 of 1000  41.900% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 420 of 1000  42.000% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 421 of 1000  42.100% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 422 of 1000  42.200% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 423 of 1000  42.300% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 424 of 1000  42.400% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 425 of 1000  42.500% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 426 of 1000  42.600% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 427 of 1000  42.700% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 428 of 1000  42.800% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 429 of 1000  42.900% complete; Elapsed=0000:00:00:10 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 430 of 1000  43.000% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 431 of 1000  43.100% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 432 of 1000  43.200% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 433 of 1000  43.300% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 434 of 1000  43.400% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 435 of 1000  43.500% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 436 of 1000  43.600% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 437 of 1000  43.700% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 438 of 1000  43.800% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 439 of 1000  43.900% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 440 of 1000  44.000% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 441 of 1000  44.100% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 442 of 1000  44.200% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 443 of 1000  44.300% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 444 of 1000  44.400% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 445 of 1000  44.500% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 446 of 1000  44.600% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 447 of 1000  44.700% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 448 of 1000  44.800% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 449 of 1000  44.900% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 450 of 1000  45.000% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 451 of 1000  45.100% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:14
+growth.c 813 Run= 0 of 1 MC= 452 of 1000  45.200% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 453 of 1000  45.300% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 454 of 1000  45.400% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 455 of 1000  45.500% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 456 of 1000  45.600% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 457 of 1000  45.700% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 458 of 1000  45.800% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 459 of 1000  45.900% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 460 of 1000  46.000% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 461 of 1000  46.100% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 462 of 1000  46.200% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 463 of 1000  46.300% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 464 of 1000  46.400% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 465 of 1000  46.500% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 466 of 1000  46.600% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 467 of 1000  46.700% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 468 of 1000  46.800% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 469 of 1000  46.900% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 470 of 1000  47.000% complete; Elapsed=0000:00:00:11 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 471 of 1000  47.100% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 472 of 1000  47.200% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 473 of 1000  47.300% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 474 of 1000  47.400% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 475 of 1000  47.500% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 476 of 1000  47.600% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 477 of 1000  47.700% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 478 of 1000  47.800% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 479 of 1000  47.900% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 480 of 1000  48.000% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 481 of 1000  48.100% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 482 of 1000  48.200% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 483 of 1000  48.300% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 484 of 1000  48.400% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 485 of 1000  48.500% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 486 of 1000  48.600% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 487 of 1000  48.700% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 488 of 1000  48.800% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 489 of 1000  48.900% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 490 of 1000  49.000% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:13
+growth.c 813 Run= 0 of 1 MC= 491 of 1000  49.100% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 492 of 1000  49.200% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 493 of 1000  49.300% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 494 of 1000  49.400% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 495 of 1000  49.500% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 496 of 1000  49.600% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 497 of 1000  49.700% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 498 of 1000  49.800% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 499 of 1000  49.900% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 500 of 1000  50.000% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 501 of 1000  50.100% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 502 of 1000  50.200% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 503 of 1000  50.300% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 504 of 1000  50.400% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 505 of 1000  50.500% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 506 of 1000  50.600% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 507 of 1000  50.700% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 508 of 1000  50.800% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 509 of 1000  50.900% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 510 of 1000  51.000% complete; Elapsed=0000:00:00:12 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 511 of 1000  51.100% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 512 of 1000  51.200% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 513 of 1000  51.300% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 514 of 1000  51.400% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 515 of 1000  51.500% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 516 of 1000  51.600% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 517 of 1000  51.700% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 518 of 1000  51.800% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 519 of 1000  51.900% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 520 of 1000  52.000% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 521 of 1000  52.100% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 522 of 1000  52.200% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 523 of 1000  52.300% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 524 of 1000  52.400% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 525 of 1000  52.500% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 526 of 1000  52.600% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 527 of 1000  52.700% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 528 of 1000  52.800% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 529 of 1000  52.900% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:12
+growth.c 813 Run= 0 of 1 MC= 530 of 1000  53.000% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 531 of 1000  53.100% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 532 of 1000  53.200% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 533 of 1000  53.300% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 534 of 1000  53.400% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 535 of 1000  53.500% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 536 of 1000  53.600% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 537 of 1000  53.700% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 538 of 1000  53.800% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 539 of 1000  53.900% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 540 of 1000  54.000% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 541 of 1000  54.100% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 542 of 1000  54.200% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 543 of 1000  54.300% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 544 of 1000  54.400% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 545 of 1000  54.500% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 546 of 1000  54.600% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 547 of 1000  54.700% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 548 of 1000  54.800% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 549 of 1000  54.900% complete; Elapsed=0000:00:00:13 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 550 of 1000  55.000% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 551 of 1000  55.100% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 552 of 1000  55.200% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 553 of 1000  55.300% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 554 of 1000  55.400% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 555 of 1000  55.500% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 556 of 1000  55.600% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 557 of 1000  55.700% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 558 of 1000  55.800% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 559 of 1000  55.900% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 560 of 1000  56.000% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 561 of 1000  56.100% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 562 of 1000  56.200% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 563 of 1000  56.300% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 564 of 1000  56.400% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 565 of 1000  56.500% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 566 of 1000  56.600% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 567 of 1000  56.700% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 568 of 1000  56.800% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:11
+growth.c 813 Run= 0 of 1 MC= 569 of 1000  56.900% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 570 of 1000  57.000% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 571 of 1000  57.100% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 572 of 1000  57.200% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 573 of 1000  57.300% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 574 of 1000  57.400% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 575 of 1000  57.500% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 576 of 1000  57.600% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 577 of 1000  57.700% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 578 of 1000  57.800% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 579 of 1000  57.900% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 580 of 1000  58.000% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 581 of 1000  58.100% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 582 of 1000  58.200% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 583 of 1000  58.300% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 584 of 1000  58.400% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 585 of 1000  58.500% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 586 of 1000  58.600% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 587 of 1000  58.700% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 588 of 1000  58.800% complete; Elapsed=0000:00:00:14 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 589 of 1000  58.900% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 590 of 1000  59.000% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 591 of 1000  59.100% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 592 of 1000  59.200% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 593 of 1000  59.300% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 594 of 1000  59.400% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 595 of 1000  59.500% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 596 of 1000  59.600% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 597 of 1000  59.700% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 598 of 1000  59.800% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 599 of 1000  59.900% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 600 of 1000  60.000% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 601 of 1000  60.100% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 602 of 1000  60.200% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 603 of 1000  60.300% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 604 of 1000  60.400% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 605 of 1000  60.500% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 606 of 1000  60.600% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 607 of 1000  60.700% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:10
+growth.c 813 Run= 0 of 1 MC= 608 of 1000  60.800% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 609 of 1000  60.900% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 610 of 1000  61.000% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 611 of 1000  61.100% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 612 of 1000  61.200% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 613 of 1000  61.300% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 614 of 1000  61.400% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 615 of 1000  61.500% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 616 of 1000  61.600% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 617 of 1000  61.700% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 618 of 1000  61.800% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 619 of 1000  61.900% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 620 of 1000  62.000% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 621 of 1000  62.100% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 622 of 1000  62.200% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 623 of 1000  62.300% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 624 of 1000  62.400% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 625 of 1000  62.500% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 626 of 1000  62.600% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 627 of 1000  62.700% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 628 of 1000  62.800% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 629 of 1000  62.900% complete; Elapsed=0000:00:00:15 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 630 of 1000  63.000% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 631 of 1000  63.100% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 632 of 1000  63.200% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 633 of 1000  63.300% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 634 of 1000  63.400% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 635 of 1000  63.500% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 636 of 1000  63.600% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 637 of 1000  63.700% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 638 of 1000  63.800% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 639 of 1000  63.900% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 640 of 1000  64.000% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 641 of 1000  64.100% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 642 of 1000  64.200% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 643 of 1000  64.300% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 644 of 1000  64.400% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 645 of 1000  64.500% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:09
+growth.c 813 Run= 0 of 1 MC= 646 of 1000  64.600% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 647 of 1000  64.700% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 648 of 1000  64.800% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 649 of 1000  64.900% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 650 of 1000  65.000% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 651 of 1000  65.100% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 652 of 1000  65.200% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 653 of 1000  65.300% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 654 of 1000  65.400% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 655 of 1000  65.500% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 656 of 1000  65.600% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 657 of 1000  65.700% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 658 of 1000  65.800% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 659 of 1000  65.900% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 660 of 1000  66.000% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 661 of 1000  66.100% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 662 of 1000  66.200% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 663 of 1000  66.300% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 664 of 1000  66.400% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 665 of 1000  66.500% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 666 of 1000  66.600% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 667 of 1000  66.700% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 668 of 1000  66.800% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 669 of 1000  66.900% complete; Elapsed=0000:00:00:16 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 670 of 1000  67.000% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 671 of 1000  67.100% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 672 of 1000  67.200% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 673 of 1000  67.300% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 674 of 1000  67.400% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 675 of 1000  67.500% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 676 of 1000  67.600% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 677 of 1000  67.700% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 678 of 1000  67.800% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 679 of 1000  67.900% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 680 of 1000  68.000% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 681 of 1000  68.100% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 682 of 1000  68.200% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 683 of 1000  68.300% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 684 of 1000  68.400% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 685 of 1000  68.500% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:08
+growth.c 813 Run= 0 of 1 MC= 686 of 1000  68.600% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 687 of 1000  68.700% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 688 of 1000  68.800% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 689 of 1000  68.900% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 690 of 1000  69.000% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 691 of 1000  69.100% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 692 of 1000  69.200% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 693 of 1000  69.300% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 694 of 1000  69.400% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 695 of 1000  69.500% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 696 of 1000  69.600% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 697 of 1000  69.700% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 698 of 1000  69.800% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 699 of 1000  69.900% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 700 of 1000  70.000% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 701 of 1000  70.100% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 702 of 1000  70.200% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 703 of 1000  70.300% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 704 of 1000  70.400% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 705 of 1000  70.500% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 706 of 1000  70.600% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 707 of 1000  70.700% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 708 of 1000  70.800% complete; Elapsed=0000:00:00:17 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 709 of 1000  70.900% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 710 of 1000  71.000% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 711 of 1000  71.100% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 712 of 1000  71.200% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 713 of 1000  71.300% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 714 of 1000  71.400% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 715 of 1000  71.500% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 716 of 1000  71.600% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 717 of 1000  71.700% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 718 of 1000  71.800% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 719 of 1000  71.900% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 720 of 1000  72.000% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 721 of 1000  72.100% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 722 of 1000  72.200% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 723 of 1000  72.300% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 724 of 1000  72.400% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:07
+growth.c 813 Run= 0 of 1 MC= 725 of 1000  72.500% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 726 of 1000  72.600% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 727 of 1000  72.700% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 728 of 1000  72.800% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 729 of 1000  72.900% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 730 of 1000  73.000% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 731 of 1000  73.100% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 732 of 1000  73.200% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 733 of 1000  73.300% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 734 of 1000  73.400% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 735 of 1000  73.500% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 736 of 1000  73.600% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 737 of 1000  73.700% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 738 of 1000  73.800% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 739 of 1000  73.900% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 740 of 1000  74.000% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 741 of 1000  74.100% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 742 of 1000  74.200% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 743 of 1000  74.300% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 744 of 1000  74.400% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 745 of 1000  74.500% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 746 of 1000  74.600% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 747 of 1000  74.700% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 748 of 1000  74.800% complete; Elapsed=0000:00:00:18 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 749 of 1000  74.900% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 750 of 1000  75.000% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 751 of 1000  75.100% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 752 of 1000  75.200% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 753 of 1000  75.300% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 754 of 1000  75.400% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 755 of 1000  75.500% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 756 of 1000  75.600% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 757 of 1000  75.700% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 758 of 1000  75.800% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 759 of 1000  75.900% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 760 of 1000  76.000% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 761 of 1000  76.100% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 762 of 1000  76.200% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 763 of 1000  76.300% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:06
+growth.c 813 Run= 0 of 1 MC= 764 of 1000  76.400% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 765 of 1000  76.500% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 766 of 1000  76.600% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 767 of 1000  76.700% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 768 of 1000  76.800% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 769 of 1000  76.900% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 770 of 1000  77.000% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 771 of 1000  77.100% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 772 of 1000  77.200% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 773 of 1000  77.300% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 774 of 1000  77.400% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 775 of 1000  77.500% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 776 of 1000  77.600% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 777 of 1000  77.700% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 778 of 1000  77.800% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 779 of 1000  77.900% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 780 of 1000  78.000% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 781 of 1000  78.100% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 782 of 1000  78.200% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 783 of 1000  78.300% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 784 of 1000  78.400% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 785 of 1000  78.500% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 786 of 1000  78.600% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 787 of 1000  78.700% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 788 of 1000  78.800% complete; Elapsed=0000:00:00:19 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 789 of 1000  78.900% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 790 of 1000  79.000% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 791 of 1000  79.100% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 792 of 1000  79.200% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 793 of 1000  79.300% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 794 of 1000  79.400% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 795 of 1000  79.500% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 796 of 1000  79.600% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 797 of 1000  79.700% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 798 of 1000  79.800% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 799 of 1000  79.900% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 800 of 1000  80.000% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 801 of 1000  80.100% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 802 of 1000  80.200% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:05
+growth.c 813 Run= 0 of 1 MC= 803 of 1000  80.300% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 804 of 1000  80.400% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 805 of 1000  80.500% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 806 of 1000  80.600% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 807 of 1000  80.700% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 808 of 1000  80.800% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 809 of 1000  80.900% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 810 of 1000  81.000% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 811 of 1000  81.100% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 812 of 1000  81.200% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 813 of 1000  81.300% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 814 of 1000  81.400% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 815 of 1000  81.500% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 816 of 1000  81.600% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 817 of 1000  81.700% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 818 of 1000  81.800% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 819 of 1000  81.900% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 820 of 1000  82.000% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 821 of 1000  82.100% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 822 of 1000  82.200% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 823 of 1000  82.300% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 824 of 1000  82.400% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 825 of 1000  82.500% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 826 of 1000  82.600% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 827 of 1000  82.700% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 828 of 1000  82.800% complete; Elapsed=0000:00:00:20 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 829 of 1000  82.900% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 830 of 1000  83.000% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 831 of 1000  83.100% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 832 of 1000  83.200% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 833 of 1000  83.300% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 834 of 1000  83.400% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 835 of 1000  83.500% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 836 of 1000  83.600% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 837 of 1000  83.700% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 838 of 1000  83.800% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 839 of 1000  83.900% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 840 of 1000  84.000% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 841 of 1000  84.100% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 842 of 1000  84.200% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:04
+growth.c 813 Run= 0 of 1 MC= 843 of 1000  84.300% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 844 of 1000  84.400% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 845 of 1000  84.500% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 846 of 1000  84.600% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 847 of 1000  84.700% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 848 of 1000  84.800% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 849 of 1000  84.900% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 850 of 1000  85.000% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 851 of 1000  85.100% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 852 of 1000  85.200% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 853 of 1000  85.300% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 854 of 1000  85.400% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 855 of 1000  85.500% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 856 of 1000  85.600% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 857 of 1000  85.700% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 858 of 1000  85.800% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 859 of 1000  85.900% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 860 of 1000  86.000% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 861 of 1000  86.100% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 862 of 1000  86.200% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 863 of 1000  86.300% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 864 of 1000  86.400% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 865 of 1000  86.500% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 866 of 1000  86.600% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 867 of 1000  86.700% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 868 of 1000  86.800% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 869 of 1000  86.900% complete; Elapsed=0000:00:00:21 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 870 of 1000  87.000% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 871 of 1000  87.100% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 872 of 1000  87.200% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 873 of 1000  87.300% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 874 of 1000  87.400% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 875 of 1000  87.500% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 876 of 1000  87.600% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 877 of 1000  87.700% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 878 of 1000  87.800% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 879 of 1000  87.900% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 880 of 1000  88.000% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 881 of 1000  88.100% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:03
+growth.c 813 Run= 0 of 1 MC= 882 of 1000  88.200% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 883 of 1000  88.300% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 884 of 1000  88.400% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 885 of 1000  88.500% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 886 of 1000  88.600% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 887 of 1000  88.700% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 888 of 1000  88.800% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 889 of 1000  88.900% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 890 of 1000  89.000% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 891 of 1000  89.100% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 892 of 1000  89.200% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 893 of 1000  89.300% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 894 of 1000  89.400% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 895 of 1000  89.500% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 896 of 1000  89.600% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 897 of 1000  89.700% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 898 of 1000  89.800% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 899 of 1000  89.900% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 900 of 1000  90.000% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 901 of 1000  90.100% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 902 of 1000  90.200% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 903 of 1000  90.300% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 904 of 1000  90.400% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 905 of 1000  90.500% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 906 of 1000  90.600% complete; Elapsed=0000:00:00:22 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 907 of 1000  90.700% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 908 of 1000  90.800% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 909 of 1000  90.900% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 910 of 1000  91.000% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 911 of 1000  91.100% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 912 of 1000  91.200% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 913 of 1000  91.300% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 914 of 1000  91.400% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 915 of 1000  91.500% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 916 of 1000  91.600% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 917 of 1000  91.700% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 918 of 1000  91.800% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 919 of 1000  91.900% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 920 of 1000  92.000% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 921 of 1000  92.100% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:02
+growth.c 813 Run= 0 of 1 MC= 922 of 1000  92.200% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 923 of 1000  92.300% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 924 of 1000  92.400% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 925 of 1000  92.500% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 926 of 1000  92.600% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 927 of 1000  92.700% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 928 of 1000  92.800% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 929 of 1000  92.900% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 930 of 1000  93.000% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 931 of 1000  93.100% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 932 of 1000  93.200% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 933 of 1000  93.300% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 934 of 1000  93.400% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 935 of 1000  93.500% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 936 of 1000  93.600% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 937 of 1000  93.700% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 938 of 1000  93.800% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 939 of 1000  93.900% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 940 of 1000  94.000% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 941 of 1000  94.100% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 942 of 1000  94.200% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 943 of 1000  94.300% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 944 of 1000  94.400% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 945 of 1000  94.500% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 946 of 1000  94.600% complete; Elapsed=0000:00:00:23 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 947 of 1000  94.700% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 948 of 1000  94.800% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 949 of 1000  94.900% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 950 of 1000  95.000% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 951 of 1000  95.100% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 952 of 1000  95.200% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 953 of 1000  95.300% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 954 of 1000  95.400% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 955 of 1000  95.500% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 956 of 1000  95.600% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 957 of 1000  95.700% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 958 of 1000  95.800% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 959 of 1000  95.900% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 960 of 1000  96.000% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:01
+growth.c 813 Run= 0 of 1 MC= 961 of 1000  96.100% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 962 of 1000  96.200% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 963 of 1000  96.300% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 964 of 1000  96.400% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 965 of 1000  96.500% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 966 of 1000  96.600% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 967 of 1000  96.700% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 968 of 1000  96.800% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 969 of 1000  96.900% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 970 of 1000  97.000% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 971 of 1000  97.100% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 972 of 1000  97.200% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 973 of 1000  97.300% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 974 of 1000  97.400% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 975 of 1000  97.500% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 976 of 1000  97.600% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 977 of 1000  97.700% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 978 of 1000  97.800% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 979 of 1000  97.900% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 980 of 1000  98.000% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 981 of 1000  98.100% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 982 of 1000  98.200% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 983 of 1000  98.300% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 984 of 1000  98.400% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 985 of 1000  98.500% complete; Elapsed=0000:00:00:24 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 986 of 1000  98.600% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 987 of 1000  98.700% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 988 of 1000  98.800% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 989 of 1000  98.900% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 990 of 1000  99.000% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 991 of 1000  99.100% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 992 of 1000  99.200% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 993 of 1000  99.300% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 994 of 1000  99.400% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 995 of 1000  99.500% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 996 of 1000  99.600% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 997 of 1000  99.700% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 998 of 1000  99.800% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00
+growth.c 813 Run= 0 of 1 MC= 999 of 1000  99.900% complete; Elapsed=0000:00:00:25 ; ETC=0000:00:00:00

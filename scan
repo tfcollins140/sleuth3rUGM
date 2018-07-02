@@ -1,0 +1,10 @@
+# Usage: First parameter is file-list specification with wildcard-specifications in quotation marks;
+#        Second parameter is search string enclosed in quotation marks.
+#
+for file in $1
+do
+   echo File Name : $file
+   echo ================================
+   echo
+   cat $file | grep $2
+done

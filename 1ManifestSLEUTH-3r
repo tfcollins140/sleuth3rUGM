@@ -1,0 +1,38 @@
+MANIFEST
+for Source Files Changed for SLEUTH-3r
+by the United States Geological Survey (USGS)
+Eastern Geographic Science Center
+[August 31, 2006]
+[Annotations modified August 19, 2009]
+===================================================================================
+
+INCLUDE FILES:
+--------------
+ igrid_obj.h
+ memory_obj.h
+ spread.h
+ ugm_defines.h
+
+
+C SOURCE FILES:
+---------------
+ driver.c
+ growth.c
+ igrid_obj.c
+ main.c
+ memory_obj.c
+ spread.c
+ stats_obj.c
+ wgrid_obj.c
+
+UTILITY SCRIPTS:
+----------------
+ scan
+ xlist_functions
+
+--------------------------------------------------
+Revision by USGS Eastern Geographic Science Center
+--------------------------------------------------
+
+Please see the NOTICE AND DISCLAIMER in the files
+1NOTICE.README and NOTICE.README.

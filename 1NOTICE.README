@@ -1,0 +1,80 @@
+-----------------------------------------------------------------------------------------
+
+                            NOTICE AND DISCLAIMER
+                            =====================
+
+This notice and disclaimer applies to the changes made to C language computer code
+and to certain ancillary files by David I. Donato of the United States Geological
+Survey (USGS) Eastern Geographic Science Center (EGSC) during calendar year 2006.
+
+The subject changes are identified as follows:
+
+(a) USGS preliminary modifications to SLEUTH Version 3.0 Beta Revision D, a computer
+    program for simulating urban growth and other land development using cellular
+    automata methods. (Please refer to the Project Gigalopolis Web Site for more
+    information about the SLEUTH model:
+        http://www.ncgia.ucsb.edu/projects/gig/projects_gig.htm .)
+
+    The resulting version of the SLEUTH urban-growth model is SLEUTH-3r.
+
+(b) Modifications were made by David I. Donato, Computer Scientist, Eastern Geographic
+    Science Center, U.S. Geological Survey (http://egsc.usgs.gov). 
+
+(c) Original modules written in C were modified; new functions were written in C; and
+    ancillary files were modified.  These changes were based on
+    SLEUTH UGM Version 3.0 Revision D[-1.0] and resulted in SLEUTH-3r. Revisions were
+    completed September 6, 2006.
+
+(d) This software was run on the Eastern Geographic Science Center (EGSC) High-
+    Performance Computing Cluster (HPCC), an 18-node Beowulf including 16 Linux-based
+    work nodes. Further information about the EGSC HPCC is available at
+    http://egscbeowulf.er.usgs.gov.
+
+(e) The source code with the subject modifications has been shared informally but
+    has not been formally published by the U.S. Geological Survey.
+
+The specific modified files to which this notice and disclaimer applies are as follow:
+
+     INCLUDE FILES:
+     --------------
+      igrid_obj.h
+      memory_obj.h
+      spread.h
+      ugm_defines.h
+
+     C SOURCE FILES:
+     ---------------
+      driver.c
+      growth.c
+      igrid_obj.c
+      main.c
+      memory_obj.c
+      spread.c
+      stats_obj.c
+      wgrid_obj.c
+
+In general, the subject modifications are identified within these files by comments
+which date the changes and identify them as changes made by D. Donato. There may
+be a small number of changes for which such annotations were inadvertently omitted.
+In several cases D. Donato modified the comment headers for pre-existing functions
+in order to bring these headers into conformance with the conventions of
+SLEUTH UGM Version 3.0 Beta; in these cases, the changes, which do not affect
+executable or declaratory code, have not been attributed to D. Donato.
+
+The changes made by the USGS Eastern Geographic Science Center in combination with
+the Version D changes annotated in these file created SLEUTH-3r, a regionalized
+version of the SLEUTH urban-growth model. The Version D changes were not made by 
+the USGS Eastern Geographic Science Center.
+
+Although these program modifications have been used by the USGS, no warranty, expressed
+or implied, is made by the USGS or the United States Government as to the accuracy and
+functioning of the program and related program material nor shall the fact of
+distribution constitute any such warranty, and no responsibility is assumed by the
+USGS in connection therewith.
+
+
+August 22, 2008
+Revised August 19, 2009
+
+------------------------------------------------------------------------------------------
+
