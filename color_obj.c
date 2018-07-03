@@ -345,7 +345,7 @@ void
       color_table_landuse_ptr->color[i].green * 256 +
       color_table_landuse_ptr->color[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %3u = %s\n", i,
              color_table_landuse_ptr->color[i].red,
@@ -361,7 +361,7 @@ void
       color_table_probability_ptr->color[i].green * 256 +
       color_table_probability_ptr->color[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %3u = %s\n", i,
              color_table_probability_ptr->color[i].red,
@@ -377,7 +377,7 @@ void
       color_table_growth_ptr->color[i].green * 256 +
       color_table_growth_ptr->color[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %3u = %s\n", i,
              color_table_growth_ptr->color[i].red,
@@ -393,7 +393,7 @@ void
       color_table_grayscale_ptr->color[i].green * 256 +
       color_table_grayscale_ptr->color[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %3u = %s\n", i,
              color_table_grayscale_ptr->color[i].red,

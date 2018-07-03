@@ -960,7 +960,7 @@ void
       landuse_classes[i].green * 256 +
       landuse_classes[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %15s %5s %4d %3u %3u %3u %3u = 0X%s\n",
              i, landuse_classes[i].idx,
@@ -984,7 +984,7 @@ void
       class_indices[i].green * 256 +
       class_indices[i].blue;
     sprintf (color_str, "%X", color_val);
-    strcpy (hex_str, zeroes);
+    strcpy (hex_str, zeroes); /* !broken! */
     strcpy (hex_str + 6 - strlen (color_str), color_str);
     fprintf (fp, "%3u %3u %3u %15s %5s %4d %3u %3u %3u %3u = 0X%s\n",
              i, class_indices[i].idx,

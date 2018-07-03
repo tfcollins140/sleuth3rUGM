@@ -9,7 +9,7 @@
 
 CC=gcc 
 AR=ar
-CFLAGS=-O
+CFLAGS=-g -O
 LIBS=-L./ -lgd -lm
 
 all: libgd.a gddemo giftogd webgif

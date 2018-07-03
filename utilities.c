@@ -926,7 +926,7 @@ void
            igrid_GetLocation (),
            name,
            proc_GetCurrentYear ());
-  sprintf (date_str, "%u", proc_GetCurrentYear ());
+  //sprintf (date_str, "%u", proc_GetCurrentYear ());
   gdif_WriteGIF (z_prob_ptr,
                  color_GetColortable (PROBABILITY_COLORTABLE),
                  filename,

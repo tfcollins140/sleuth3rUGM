@@ -20,7 +20,7 @@ CC = mpicc
 #   -DNDEBUG (turns asserts off; for production code; faster execution)
 #   -DMPI (if running on an MPI machine else -UMPI)
 #
-CFLAGS=-O3 -UNDEBUG -DMPI -I$(GD_LIB) -I/usr/local/mpich2-1.0/include
+CFLAGS= -g -Og -UNDEBUG -DMPI -I$(GD_LIB) -I/usr/local/mpich2-1.0/include
 
 CLIBS = -L./ -L./GD/ -L/usr/local/mpich2-1.0/lib -lgd -lm -lc
 #CLIBS = -L./ -L./GD/ -lgd -lm -lc
